@@ -102,6 +102,15 @@ public class LauncherController {
     }
 
     /**
+     * Returns the currently selected profile user
+     *
+     * @return The currently selected profile user
+     */
+    public ProfileUser getSelectedProfileUser() {
+        return getAuthenticationDatabase().getProfile(getSelectedUser());
+    }
+
+    /**
      * Returns the launcher version, which contains the version build name, the format and the profiles format.
      *
      * @return The launcher version
