@@ -35,6 +35,7 @@ public class LauncherProfileBuilder {
      * Sets the launcher name
      *
      * @param name New value to set
+     * @return This builder instance
      */
     public LauncherProfileBuilder setName(String name) {
         profile.setName(name);
@@ -45,6 +46,7 @@ public class LauncherProfileBuilder {
      * Sets the launcher visibility
      *
      * @param launcherVisibility New value to set
+     * @return This builder instance
      */
     public LauncherProfileBuilder setLauncherVisibility(LauncherVisibility launcherVisibility) {
         profile.setLauncherVisibility(launcherVisibility);
@@ -55,6 +57,7 @@ public class LauncherProfileBuilder {
      * Sets the last version ID
      *
      * @param versionID New value to set
+     * @return This builder instance
      */
     public LauncherProfileBuilder setVersionID(String versionID) {
         profile.setVersionID(versionID);
@@ -65,6 +68,7 @@ public class LauncherProfileBuilder {
      * Sets the game directory
      *
      * @param gameDirectory New value to set
+     * @return This builder instance
      */
     public LauncherProfileBuilder setGameDirectory(String gameDirectory) {
         profile.setGameDirectory(gameDirectory);
@@ -75,6 +79,7 @@ public class LauncherProfileBuilder {
      * Sets the Java directory
      *
      * @param javaDirectory New value to set
+     * @return This builder instance
      */
     public LauncherProfileBuilder setJavaDirectory(String javaDirectory) {
         profile.setJavaDirectory(javaDirectory);
@@ -85,6 +90,7 @@ public class LauncherProfileBuilder {
      * Sets the launch arguments
      *
      * @param javaArguments New value to set
+     * @return This builder instance
      */
     public LauncherProfileBuilder setJavaArguments(String javaArguments) {
         profile.setJavaArguments(javaArguments);
@@ -95,6 +101,7 @@ public class LauncherProfileBuilder {
      * Sets the game resolution
      *
      * @param resolution New value to set
+     * @return This builder instance
      */
     public LauncherProfileBuilder setGameResolution(GameResolution resolution) {
         profile.setResolution(resolution);
@@ -105,6 +112,7 @@ public class LauncherProfileBuilder {
      * Sets the allowed release types
      *
      * @param allowedReleaseTypes New value to set
+     * @return This builder instance
      */
     public LauncherProfileBuilder setAllowedReleaseTypes(ReleaseType... allowedReleaseTypes) {
         profile.setAllowedReleaseTypes(allowedReleaseTypes);
@@ -115,6 +123,7 @@ public class LauncherProfileBuilder {
      * Sets whether to send crash reports to Mojang or not
      *
      * @param useHopperCrashService New value to set
+     * @return This builder instance
      */
     public LauncherProfileBuilder setUseHopperCrashService(boolean useHopperCrashService) {
         profile.setUseHopperCrashService(useHopperCrashService);
