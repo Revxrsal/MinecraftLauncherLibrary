@@ -31,15 +31,9 @@ public class LauncherVersion {
     private int format;
 
     /**
-     * The profiles format (???)
+     * The profiles format
      */
     private int profilesFormat;
-
-    public LauncherVersion(String name, int format, int profilesFormat) {
-        this.name = name;
-        this.format = format;
-        this.profilesFormat = profilesFormat;
-    }
 
     /**
      * Returns the name of the version

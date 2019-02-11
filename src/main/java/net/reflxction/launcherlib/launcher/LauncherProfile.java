@@ -20,7 +20,6 @@ import net.reflxction.launcherlib.game.GameResolution;
 import net.reflxction.launcherlib.game.LauncherVisibility;
 import net.reflxction.launcherlib.game.ReleaseType;
 import net.reflxction.simplejson.utils.JsonBuilder;
-import net.reflxction.simplejson.utils.ObjectUtils;
 
 /**
  * Represents a launcher launcher
@@ -236,35 +235,17 @@ public class LauncherProfile {
     }
 
     public JsonObject getJson() {
-        JsonBuilder builder = new JsonBuilder();
-
-        ObjectUtils.ifNotNull(name, profileName ->
-                builder.map("name", profileName));
-
-        ObjectUtils.ifNotNull(gameDirectory, directory ->
-                builder.map("gameDir", directory));
-
-        ObjectUtils.ifNotNull(versionID, lastVersionId ->
-                builder.map("lastVersionId", lastVersionId));
-
-        ObjectUtils.ifNotNull(javaDirectory, directory ->
-                builder.map("javaDir", directory));
-
-        ObjectUtils.ifNotNull(javaArguments, args ->
-                builder.map("javaArgs", args));
-
-        ObjectUtils.ifNotNull(resolution, res ->
-                builder.map("resolution", res));
-
-        ObjectUtils.ifNotNull(allowedReleaseTypes, releaseTypes ->
-                builder.map("allowedReleaseTypes", releaseTypes));
-
-        ObjectUtils.ifNotNull(launcherVisibility, visibility ->
-                builder.map("launcherVisibilityOnGameClose", launcherVisibility.getLauncherValue()));
-
-        if (useHopperCrashService)
-            builder.map("useHopperCrashService", true);
-        return builder.buildJsonObject();
+        return new JsonBuilder()
+                .mapIfNotNull("name", name)
+                .mapIfNotNull("gameDir", gameDirectory)
+                .mapIfNotNull("lastVersionId", versionID)
+                .mapIfNotNull("javaDir", javaDirectory)
+                .mapIfNotNull("javaArgs", javaArguments)
+                .mapIfNotNull("resolution", resolution)
+                .mapIfNotNull("allowedReleasesTypes", allowedReleaseTypes)
+                .mapIfNotNull("launcherVisibilityOnGameClose", launcherVisibility.getLauncherValue())
+                .mapIf(s -> useHopperCrashService, "useHopperCrashService", true)
+                .buildJsonObject();
     }
 
 }

@@ -37,6 +37,11 @@ public class ProfileManager {
     private static final String WORKING_DIRECTORY_NAME = "minecraft";
 
     /**
+     * The launcher profile's file name
+     */
+    public static final String FILE_NAME = "launcher_profiles.json";
+
+    /**
      * A default instance of the profile manager. Useful if no new initiation is required.
      */
     private static final ProfileManager INSTANCE = new ProfileManager();
@@ -54,7 +59,7 @@ public class ProfileManager {
      * Initiates a new ProfileManager with Minecraft's expected working directory.
      */
     public ProfileManager() {
-        this(getExpectedMinecraftDirectory().getAbsolutePath() + File.separator + "launcher_profiles.json");
+        this(getExpectedMinecraftDirectory().getAbsolutePath() + File.separator + FILE_NAME);
     }
 
     /**

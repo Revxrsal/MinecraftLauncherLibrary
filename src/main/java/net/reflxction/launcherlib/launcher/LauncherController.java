@@ -58,7 +58,7 @@ public class LauncherController {
      * Initiates a new controller from the expected Minecraft directory.
      */
     public LauncherController() {
-        this(ProfileManager.getExpectedMinecraftDirectory().getAbsolutePath() + File.separator + "launcher_profiles.json");
+        this(ProfileManager.getExpectedMinecraftDirectory().getAbsolutePath() + File.separator + ProfileManager.FILE_NAME);
     }
 
     /**
