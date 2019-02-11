@@ -1,3 +1,6 @@
+**!!! DISCLAIMER !!!**: The current code currently wraps the **new launcher**! Management of the old launcher has drastically changed. Version [1.0](https://github.com/ReflxctionDev/MinecraftLauncherLibrary/releases/tag/1.0) has full support
+for the old launcher, and 1.0 source code can be found in the [old-launcher](https://github.com/ReflxctionDev/MinecraftLauncherLibrary/tree/old-launcher) branch of this repository tree.
+
 # Minecraft Launcher Library
 This library gives full access to any exposed data in Minecraft's launcher. This includes:
 
@@ -6,9 +9,6 @@ This library gives full access to any exposed data in Minecraft's launcher. This
 * **Launcher version**: The launcher also exposes information about the build version. Information exposed includes the launcher build name, the format and the profiles format. (Examples below)
 * **Launcher session information**: Such as the currently selected user UUID, the currently selected profile and the current client token.
 * **Basic launcher features**: This includes fetching Minecraft's working directory. More features will be added to this.
-
-**!!! DISCLAIMER !!!**: This library currently wraps the **new launcher**! Management of the old launcher has drastically changed. Version [1.0](https://github.com/ReflxctionDev/MinecraftLauncherLibrary/releases/tag/1.0) has full support
-for the old launcher, and 1.0 source code can be found in the [old-launcher](https://github.com/ReflxctionDev/MinecraftLauncherLibrary/tree/old-launcher) branch of this repository tree.
 
 * ****
 # Examples
