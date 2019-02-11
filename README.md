@@ -7,7 +7,8 @@ This library gives full access to any exposed data in Minecraft's launcher. This
 * **Launcher session information**: Such as the currently selected user UUID, the currently selected profile and the current client token.
 * **Basic launcher features**: This includes fetching Minecraft's working directory. More features will be added to this.
 
-**!!! DISCLAIMER !!!**: This library currently wraps the **old launcher**! New launcher updates are still WIP, though they will be added in next releases!
+**!!! DISCLAIMER !!!**: This library currently wraps the **new launcher**! Management of the old launcher has drastically changed. Version [1.0](https://github.com/ReflxctionDev/MinecraftLauncherLibrary/releases/tag/1.0) has full support
+for the old launcher, and 1.0 source code can be found in the [old-launcher](https://github.com/ReflxctionDev/MinecraftLauncherLibrary/tree/old-launcher) branch of this repository tree.
 
 * ****
 # Examples
