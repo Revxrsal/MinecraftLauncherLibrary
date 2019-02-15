@@ -1,5 +1,5 @@
 /*
- * * Copyright 2018 github.com/ReflxctionDev
+ * * Copyright 2018-2019 github.com/ReflxctionDev
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,15 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.reflxction.launcherlib.launcher;
+package net.reflxction.launcherlib3.launcher;
 
 /**
- * Represents the current launcher version information
+ * Contains all information
  */
+@LauncherSection("launcherVersion")
 public class LauncherVersion {
 
     /**
-     * The name of the current version
+     * The name of this build
      */
     private String name;
 
@@ -36,7 +37,7 @@ public class LauncherVersion {
     private int profilesFormat;
 
     /**
-     * Returns the name of the version
+     * Returns the name of this version build, e.g "2.1.1462".
      *
      * @return The version name
      */
@@ -45,7 +46,7 @@ public class LauncherVersion {
     }
 
     /**
-     * Returns the launcher format (???)
+     * Returns the launcher format
      *
      * @return The launcher format
      */
@@ -54,9 +55,9 @@ public class LauncherVersion {
     }
 
     /**
-     * Returns the profiles format (???)
+     * Returns the profiles format.
      *
-     * @return The profile format
+     * @return The profiles format
      */
     public int getProfilesFormat() {
         return profilesFormat;
