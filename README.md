@@ -2,29 +2,33 @@
 for the old launcher, and 1.0 source code can be found in the [old-launcher](https://github.com/ReflxctionDev/MinecraftLauncherLibrary/tree/old-launcher) branch of this repository tree.
 
 # Minecraft Launcher Library
-This library gives full access to any exposed data in Minecraft's launcher. This includes:
+The most powerful Minecraft Launcher library which gives full access and management to the Minecraft launcher
+
+##Features:
 
 * **Profiles Management**: You can create launcher profiles and remove them, with flexible methods and full control over the profile. (Examples below)
 * **Authentication Database**: The launcher by default exposes the logged-in emails, and includes their IGN display name, access/session token, user ID, UUID and e-mail. (Example below)
 * **Launcher version**: The launcher also exposes information about the build version. Information exposed includes the launcher build name, the format and the profiles format. (Examples below)
-* **Launcher session information**: Such as the currently selected user UUID, the currently selected profile and the current client token.
+* **Launcher data**: Such as the currently selected user UUID, the currently selected profile and the current client token.
 * **Basic launcher features**: This includes fetching Minecraft's working directory. More features will be added to this.
+* **Fast and fully documented**
 
-* ****
+****
 # Examples
 
-### Creating a custom profile:
+## Part I: Profiles Management:
+
+#### Creating a custom profile:
 ```java
 LauncherProfile myProfile = new LauncherProfileBuilder()
         .setName("My Profile")
-        .setLauncherVisibility(LauncherVisibility.HIDE_AND_OPEN_ON_GAME_CLOSE)
         .setVersionID("1.8.8")
         .setIcon("Base64 encoded image here")
         // More setters are available, though we won't cover all of them
         .build();
 ```
 
-### Profiles management:
+#### Controlling profiles:
 1- Declaring the instance:
 ```java
 // You can initiate your own profile manager as well if you want to provide a custom location for the launcher_version.json.
@@ -44,64 +48,56 @@ profileManager.addProfile(myProfile).save();
 
 3- For removing a profile
 ```java
-profilesManager.removeProfile("Boop").save();
-// If we're done removing all the profiles we want, you must call:
-profileManager.apply(); // This will save all the changes done to the launcher
-```
+profilesManager.removeProfile("Boop").save();```
 
 **Note**: ProfileManager allows chaining methods. For example, it's possible to do **profileManager.addProfile(profile).removeProfile("Profile to remove").save();**
 
-### Authentication Database
-The **Authentication Database** is available using **LauncherController**:
-
-1- To declare our launcher controller instance:
+4- Getting an already existing **LauncherProfile**:
 ```java
-// You can initiate your own launcher controller as well if you want to provide a custom location for the launcher_version.json.
-LauncherController controller = LauncherController.getInstance();
+LauncherProfile profile = profilesManager.getProfile("My Profile");
+System.out.println("Profile Created At: " + profile.getCreationDate());```
+
+* If you would like to create a modifiable object of this, you can invoke **LauncherProfile#asBuilder()** which would return a **LauncherProfileBuilder**. Do note that changes done in the builder **do not modify the parent profile object**
+
+## Part II: Authentication Database
+The launcher by default exposes the auth information such as sessions, access tokens, logged-in and selected emails, etc. You can access those from **LauncherContext**:
+
+#### Accessing the database:
+```java
+LauncherContext context = MinecraftLauncher.getInstance().getLauncherContext();
+Map<String, ProfileAccount> auth = context.getAuthenticationDatabase();
+System.out.println(auth.get("4d0faeedcbc319d7268ec15abfdc7a73").getEmail());
 ```
 
-2- Access the authentication database:
+## Part III: Launcher Version:
+The launcher also exposes information about the current launcher build (version). This is perhaps used internally by the launcher to allow compatibility across all launcher versions.
+
 ```java
-AuthenticationDatabase database = controller.getAuthenticationDatabase();
+LauncherContext context = MinecraftLauncher.getInstance().getLauncherContext();
+LauncherVersion version = context.getLauncherVersion();
+System.out.println("Launcher version: " + version.getName());
+System.out.println("Format: " + version.getFormat());
+System.out.println("Profiles format: " + version.getProfilesFormat());
 ```
 
-3- We can access all the profiles now
+## Part IV: Launcher data:
+Little things like the currently selected user and profile are saved inside the launcher data. They can be accessed using this library. They **may not** have a specific section which contains them.
+
 ```java
-ProfileUser user = database.getProfile("dfbd02a46be14153a203aed7204d35b6"); // This is for example my UUID
-System.out.println("Display name: " + user.getDisplayName());
-System.out.println("UUID: " + user.getUUID());
-```
+LauncherContext context = MinecraftLauncher.getInstance().getLauncherContext();
+System.out.println("Selected Profile: " + context.getSelectedProfile());
+System.out.println("Analytics Token: " + context.getAnalyticsToken());
+System.out.println("Analytics Fail Count: " + context.getAnalyticsFailCount());```
 
-4- You can also get all logged in users
+* **Selected user**:
+You can access the selected user as well from the **LauncherContext**. Data is accessible from **ProfileUser**.
+
 ```java
-List<ProfileUser> users = database.getProfileUsers();
-for (ProfileUser user : users) {
-    System.out.println("Display name: " + user.getDisplayName());
-}
+ProfileUser selectedUser = context.getSelectedUser();
+System.out.println("UUID: " + selectedUser.getProfileUUID());
 ```
+## Part V: Extra features
+The library also comes with a few extra features for the launcher. 
 
-5- ...And the currently selected user:
-```java
-ProfileUser user = controller.getSelectedProfileUser();
-...
-```
-
-### Launcher version
-You can use this to, for example, check if the user is keeping up-to-date with the launcher versions.
-
-Launcher version information are exposed through **LauncherController**:
-
-1- To declare our launcher controller instance:
-```java
-// You can initiate your own launcher controller as well if you want to provide a custom location for the launcher_version.json.
-LauncherController controller = LauncherController.getInstance();
-```
-
-2- Access the version:
-```java
-LauncherVersion version = controller.getLauncherVersion();
-System.out.println("Launcher Build Name: " + version.getName());
-```
-
-### Launcher session information:
-You can also access information such as the selected profile name, the selected user name, the client token, etc.
+* **Accessing Minecraft's working directory (.minecraft)**: This can be accessed through `MinecraftLauncher.WORKING_DIRECTORY` which will return the cached location. This method uses the same exact method the Minecraft launcher uses so it should be at least 97% accurate. If you want the latest working directory, you can get it using `MinecraftLauncher.getExpectedWorkingDirectory()`.
+* **Useful Minecraft constants**: Such as `FILE_NAME`, `WORKING_DIRECTORY`, `DATA_FILE`, `GSON`, etc.
