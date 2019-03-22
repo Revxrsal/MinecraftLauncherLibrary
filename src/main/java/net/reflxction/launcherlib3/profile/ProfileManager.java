@@ -128,9 +128,7 @@ public class ProfileManager {
      * @return The new cached map
      */
     public Map<String, LauncherProfile> updateCache() {
-        Type mapType = new TypeToken<LinkedHashMap<String, LauncherProfile>>() {
-        }.getType();
-        return profileMap = configuration.get(PROFILES, mapType, MinecraftLauncher.GSON);
+        return profileMap = configuration.get(PROFILES, PROFILES_MAP_TYPE, MinecraftLauncher.GSON);
     }
 
     /**
