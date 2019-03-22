@@ -45,6 +45,12 @@ public class MinecraftLauncher {
     public static final String FILE_NAME = "launcher_profiles.json";
 
     /**
+     * Minecraft's working directory (.minecraft). This should be used instead of invoking {@link #getExpectedMinecraftDirectory()} for
+     * caching.
+     */
+    public static final File WORKING_DIRECTORY = getExpectedMinecraftDirectory();
+
+    /**
      * The launcher_profiles.json file.
      */
     public static final File DATA_FILE = new File(getExpectedMinecraftDirectory() + File.separator + FILE_NAME);
