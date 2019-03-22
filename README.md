@@ -10,6 +10,7 @@ The most powerful Minecraft Launcher library which gives full access and managem
 * **Authentication Database**: The launcher by default exposes the logged-in emails, and includes their IGN display name, access/session token, user ID, UUID and e-mail. (Example below)
 * **Launcher version**: The launcher also exposes information about the build version. Information exposed includes the launcher build name, the format and the profiles format. (Examples below)
 * **Launcher data**: Such as the currently selected user UUID, the currently selected profile and the current client token.
+* **Settings**: Settings in which control the game launching.
 * **Basic launcher features**: This includes fetching Minecraft's working directory. More features will be added to this.
 * **Fast and fully documented**
 
@@ -91,7 +92,6 @@ System.out.println("Selected Profile: " + context.getSelectedProfile());
 System.out.println("Analytics Token: " + context.getAnalyticsToken());
 System.out.println("Analytics Fail Count: " + context.getAnalyticsFailCount());
 ```
-
 * **Selected user**:
 You can access the selected user as well from the **LauncherContext**. Data is accessible from **ProfileUser**.
 
@@ -99,7 +99,14 @@ You can access the selected user as well from the **LauncherContext**. Data is a
 ProfileUser selectedUser = context.getSelectedUser();
 System.out.println("UUID: " + selectedUser.getProfileUUID());
 ```
-## Part V: Extra features
+## Part V: Settings
+Settings are saved in their own section and are accessible through this library.
+```java
+LauncherSettings settings = context.getSettings();
+...
+```
+
+## Part VI: Extra features
 The library also comes with a few extra features for the launcher. 
 
 * **Accessing Minecraft's working directory (.minecraft)**: This can be accessed through `MinecraftLauncher.WORKING_DIRECTORY` which will return the cached location. This method uses the same exact method the Minecraft launcher uses so it should be at least 97% accurate. If you want the latest working directory, you can get it using `MinecraftLauncher.getExpectedWorkingDirectory()`.
