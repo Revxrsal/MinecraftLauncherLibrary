@@ -120,7 +120,7 @@ public class LauncherProfile {
      *
      * @return The creation date of this profile
      */
-    public Date getCreated() {
+    public Date getCreationDate() {
         return created;
     }
 
@@ -147,7 +147,7 @@ public class LauncherProfile {
      *
      * @return The last version ID launched with this profile
      */
-    public String getLastVersionId() {
+    public String getVersionID() {
         return lastVersionId;
     }
 
