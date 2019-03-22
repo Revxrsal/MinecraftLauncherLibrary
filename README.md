@@ -4,7 +4,7 @@ for the old launcher, and 1.0 source code can be found in the [old-launcher](htt
 # Minecraft Launcher Library
 The most powerful Minecraft Launcher library which gives full access and management to the Minecraft launcher
 
-##Features:
+## Features:
 
 * **Profiles Management**: You can create launcher profiles and remove them, with flexible methods and full control over the profile. (Examples below)
 * **Authentication Database**: The launcher by default exposes the logged-in emails, and includes their IGN display name, access/session token, user ID, UUID and e-mail. (Example below)
