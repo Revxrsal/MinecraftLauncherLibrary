@@ -48,14 +48,16 @@ profileManager.addProfile(myProfile).save();
 
 3- For removing a profile
 ```java
-profilesManager.removeProfile("Boop").save();```
+profilesManager.removeProfile("Boop").save();
+```
 
 **Note**: ProfileManager allows chaining methods. For example, it's possible to do **profileManager.addProfile(profile).removeProfile("Profile to remove").save();**
 
 4- Getting an already existing **LauncherProfile**:
 ```java
 LauncherProfile profile = profilesManager.getProfile("My Profile");
-System.out.println("Profile Created At: " + profile.getCreationDate());```
+System.out.println("Profile Created At: " + profile.getCreationDate());
+```
 
 * If you would like to create a modifiable object of this, you can invoke **LauncherProfile#asBuilder()** which would return a **LauncherProfileBuilder**. Do note that changes done in the builder **do not modify the parent profile object**
 
@@ -87,7 +89,8 @@ Little things like the currently selected user and profile are saved inside the 
 LauncherContext context = MinecraftLauncher.getInstance().getLauncherContext();
 System.out.println("Selected Profile: " + context.getSelectedProfile());
 System.out.println("Analytics Token: " + context.getAnalyticsToken());
-System.out.println("Analytics Fail Count: " + context.getAnalyticsFailCount());```
+System.out.println("Analytics Fail Count: " + context.getAnalyticsFailCount());
+```
 
 * **Selected user**:
 You can access the selected user as well from the **LauncherContext**. Data is accessible from **ProfileUser**.
