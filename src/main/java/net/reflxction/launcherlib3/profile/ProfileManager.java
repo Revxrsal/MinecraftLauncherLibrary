@@ -38,6 +38,12 @@ public class ProfileManager {
     private static final String PROFILES = "profiles";
 
     /**
+     * The type of the profiles map. This is used by the GSON deserializers.
+     */
+    private static final Type PROFILES_MAP_TYPE = new TypeToken<LinkedHashMap<String, LauncherProfile>>() {
+    }.getType();
+
+    /**
      * A default instance of the profile manager. Useful if no new initiation is required.
      */
     private static final ProfileManager INSTANCE = new ProfileManager();
@@ -59,9 +65,7 @@ public class ProfileManager {
      */
     public ProfileManager(String path) {
         this.configuration = DirectConfiguration.of(JsonFile.of(path));
-        Type mapType = new TypeToken<LinkedHashMap<String, LauncherProfile>>() {
-        }.getType();
-        this.profileMap = configuration.get(PROFILES, mapType, MinecraftLauncher.GSON);
+        this.profileMap = configuration.get(PROFILES, PROFILES_MAP_TYPE, MinecraftLauncher.GSON);
     }
 
     /**
@@ -126,7 +130,7 @@ public class ProfileManager {
     public Map<String, LauncherProfile> updateCache() {
         Type mapType = new TypeToken<LinkedHashMap<String, LauncherProfile>>() {
         }.getType();
-        return profileMap = configuration.get("profiles", mapType, MinecraftLauncher.GSON);
+        return profileMap = configuration.get(PROFILES, mapType, MinecraftLauncher.GSON);
     }
 
     /**

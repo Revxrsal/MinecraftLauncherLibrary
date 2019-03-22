@@ -19,9 +19,7 @@ LauncherProfile myProfile = new LauncherProfileBuilder()
         .setName("My Profile")
         .setLauncherVisibility(LauncherVisibility.HIDE_AND_OPEN_ON_GAME_CLOSE)
         .setVersionID("1.8.8")
-        .setGameResolution(new GameResolution(854, 480))
-        .setAllowedReleaseTypes(ReleaseType.RELEASE, ReleaseType.SNAPSHOT)
-        .setJavaArguments("-Xmx2G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:-UseAdaptiveSizePolicy -Xmn1GM")
+        .setIcon("Base64 encoded image here")
         // More setters are available, though we won't cover all of them
         .build();
 ```
@@ -38,20 +36,20 @@ ProfileManager profileManager = ProfilesManager.getInstance();
 // Add our own profile
 LauncherProfile myProfile = new LauncherProfileBuilder()
         .setName("Boop")
-        .setLauncherVisibility(LauncherVisibility.KEEP_LAUNCHER_OPEN)
         .setVersionID("1.8.8")
         .build();
-profileManager.addProfile(myProfile);
+profileManager.addProfile(myProfile).save();
 // If we're done adding all the profiles we want, you must call:
-profileManager.apply(); // This will save all the changes done to the launcher
 ```
 
 3- For removing a profile
 ```java
-profilesManager.removeProfile("Boop");
+profilesManager.removeProfile("Boop").save();
 // If we're done removing all the profiles we want, you must call:
 profileManager.apply(); // This will save all the changes done to the launcher
 ```
+
+**Note**: ProfileManager allows chaining methods. For example, it's possible to do **profileManager.addProfile(profile).removeProfile("Profile to remove").save();**
 
 ### Authentication Database
 The **Authentication Database** is available using **LauncherController**:
